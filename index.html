@@ -6,34 +6,55 @@
   <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-  <script src="scripts/main.js" defer></script>
-  <h1>TEN PIN SCORER</h1>
 
-  <div id="lane">
-    <!-- pins arranged back-to-front, as seen from above -->
-    <div class="row">
-      <div class="pin" data-pin="7"></div>
-      <div class="pin" data-pin="8"></div>
-      <div class="pin" data-pin="9"></div>
-      <div class="pin" data-pin="10"></div>
-    </div>
-    <div class="row">
-      <div class="pin" data-pin="4"></div>
-      <div class="pin" data-pin="5"></div>
-      <div class="pin" data-pin="6"></div>
-    </div>
-    <div class="row">
-      <div class="pin" data-pin="2"></div>
-      <div class="pin" data-pin="3"></div>
-    </div>
-    <div class="row">
-      <div class="pin" data-pin="1"></div>
+  <div id="setup">
+    <h1>TEN PIN SCORER</h1>
+    <p class="prompt">How many players?</p>
+    <div id="player-count-buttons">
+      <button class="player-count-btn" data-count="1">1</button>
+      <button class="player-count-btn" data-count="2">2</button>
+      <button class="player-count-btn" data-count="3">3</button>
+      <button class="player-count-btn" data-count="4">4</button>
     </div>
   </div>
 
-  <div id="score-area">Click pins to knock them down</div>
+  <div id="game" style="display:none">
+    <div id="scoreboard"></div>
 
-  <button id="done-btn">DONE</button>
-  <button id="reset-btn">Reset</button>
+    <div id="current-player-info"></div>
+
+    <div id="lane">
+      <!-- pins arranged back-to-front, as seen from above -->
+      <div class="row">
+        <div class="pin" data-pin="7"></div>
+        <div class="pin" data-pin="8"></div>
+        <div class="pin" data-pin="9"></div>
+        <div class="pin" data-pin="10"></div>
+      </div>
+      <div class="row">
+        <div class="pin" data-pin="4"></div>
+        <div class="pin" data-pin="5"></div>
+        <div class="pin" data-pin="6"></div>
+      </div>
+      <div class="row">
+        <div class="pin" data-pin="2"></div>
+        <div class="pin" data-pin="3"></div>
+      </div>
+      <div class="row">
+        <div class="pin" data-pin="1"></div>
+      </div>
+    </div>
+
+    <div id="score-area">Click pins to knock them down</div>
+
+    <div id="action-buttons">
+      <button id="undo-btn" style="display:none">Undo</button>
+      <button id="done-btn">DONE</button>
+      <button id="next-player-btn" style="display:none">Next player</button>
+    </div>
+    <button id="reset-btn">Reset</button>
+  </div>
+
+  <script src="scripts/main.js" defer></script>
 </body>
 </html>

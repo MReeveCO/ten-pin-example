@@ -1,20 +1,147 @@
 body {
   font-family: sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
   margin: 0;
   background: #1a1a2e;
   color: #eee;
 }
 
+/* ── Setup screen ── */
+
+#setup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
 h1 {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   font-size: 1.5rem;
   letter-spacing: 0.1em;
 }
+
+.prompt {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  color: #ccc;
+}
+
+#player-count-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.player-count-btn {
+  width: 60px;
+  height: 60px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  background: #e8c87a;
+  color: #1a1a2e;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.player-count-btn:hover {
+  background: #f0d890;
+}
+
+/* ── Game screen ── */
+
+#game {
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 1rem 2rem;
+  box-sizing: border-box;
+  min-height: 100vh;
+}
+
+/* ── Scoreboard ── */
+
+#scoreboard {
+  width: 100%;
+  max-width: 720px;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+
+#score-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+}
+
+#score-table thead th {
+  background: #2a2a4a;
+  padding: 0.3rem 0.4rem;
+  border: 1px solid #444;
+  text-align: center;
+}
+
+.player-name {
+  padding: 0.2rem 0.6rem;
+  white-space: nowrap;
+  font-weight: bold;
+  border: 1px solid #444;
+  text-align: left;
+}
+
+.round-cell {
+  border: 1px solid #444;
+  padding: 2px 3px;
+  vertical-align: bottom;
+  min-width: 36px;
+}
+
+.ball-scores {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1px;
+  margin-bottom: 2px;
+}
+
+.ball-score {
+  width: 16px;
+  height: 16px;
+  border: 1px solid #555;
+  font-size: 0.7rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #bbb;
+}
+
+.ball-score.strike-x {
+  min-width: 33px;
+  color: #e8c87a;
+  font-weight: bold;
+}
+
+.ball-score.spare-slash {
+  color: #e8c87a;
+  font-weight: bold;
+}
+
+.round-total {
+  font-size: 0.88rem;
+  font-weight: bold;
+  text-align: center;
+  min-height: 1.1em;
+}
+
+/* ── Current player indicator ── */
+
+#current-player-info {
+  font-size: 1rem;
+  color: #e8c87a;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.05em;
+}
+
+/* ── Lane ── */
 
 #lane {
   display: flex;
@@ -61,13 +188,41 @@ h1 {
   opacity: 0.5;
 }
 
+/* ── Score area ── */
+
 #score-area {
   font-size: 1.2rem;
   margin-bottom: 1.5rem;
   min-height: 1.5em;
 }
 
-#done-btn {
+/* ── Buttons ── */
+
+#action-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+#undo-btn {
+  padding: 0.7rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  background: transparent;
+  color: #e8c87a;
+  border: 2px solid #e8c87a;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+#undo-btn:hover {
+  background: #e8c87a22;
+}
+
+#done-btn,
+#next-player-btn {
   padding: 0.7rem 2.5rem;
   font-size: 1.1rem;
   font-weight: bold;
@@ -80,12 +235,12 @@ h1 {
   transition: background 0.15s;
 }
 
-#done-btn:hover {
+#done-btn:hover,
+#next-player-btn:hover {
   background: #f0d890;
 }
 
 #reset-btn {
-  margin-top: 1rem;
   padding: 0.4rem 1.5rem;
   font-size: 0.9rem;
   background: transparent;
