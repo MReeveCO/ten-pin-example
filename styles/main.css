@@ -54,6 +54,13 @@ h1 {
   border-color: #555;
 }
 
+.pin.gone {
+  background: #111;
+  border-color: #2a2a2a;
+  cursor: default;
+  opacity: 0.5;
+}
+
 #score-area {
   font-size: 1.2rem;
   margin-bottom: 1.5rem;
