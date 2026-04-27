@@ -52,7 +52,15 @@ test('DONE on ball 1 shows STRIKE when all 10 pins are knocked down', async ({ p
     await pin(page, i).click();
   }
   await doneButton(page).click();
-  await expect(scoreArea(page)).toHaveText('STRIKE! All 10 pins knocked down!');
+  await expect(scoreArea(page)).toHaveText('Round complete: STRIKE! All 10 pins knocked down!');
+});
+
+test('STRIKE hides the DONE button', async ({ page }) => {
+  for (let i = 1; i <= 10; i++) {
+    await pin(page, i).click();
+  }
+  await doneButton(page).click();
+  await expect(doneButton(page)).toBeHidden();
 });
 
 test('DONE on ball 2 shows SPARE when all 10 pins are knocked down', async ({ page }) => {

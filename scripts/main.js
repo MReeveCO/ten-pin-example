@@ -1,5 +1,5 @@
 let doneClicked = false;
-let doneCount = 0;
+let ballInRound = 1;
 
 document.querySelectorAll('.pin').forEach(pin => {
   pin.addEventListener('click', () => {
@@ -11,22 +11,23 @@ document.querySelectorAll('.pin').forEach(pin => {
 });
 
 document.getElementById('done-btn').addEventListener('click', () => {
-  doneCount++;
-
   const knockedPins = document.querySelectorAll('.pin.knocked');
   const total = knockedPins.length + document.querySelectorAll('.pin.gone').length;
 
-  const isFirstBall = doneCount % 2 === 1;
+  const isStrike = ballInRound === 1 && total === 10;
+  const isSpare  = ballInRound === 2 && total === 10;
+  const isRoundComplete = isStrike || ballInRound === 2;
+
   const message =
-    total === 0 ? 'No pins knocked down.'
-    : total === 10 && isFirstBall ? 'STRIKE! All 10 pins knocked down!'
-    : total === 10 ? 'SPARE! All 10 pins knocked down!'
+    total === 0    ? 'No pins knocked down.'
+    : isStrike     ? 'STRIKE! All 10 pins knocked down!'
+    : isSpare      ? 'SPARE! All 10 pins knocked down!'
     : `${total} pin${total === 1 ? '' : 's'} knocked down.`;
 
   document.getElementById('score-area').textContent =
-    doneCount % 2 === 0 ? `Round complete: ${message}` : message;
+    isRoundComplete ? `Round complete: ${message}` : message;
 
-  if (doneCount % 2 === 0) {
+  if (isRoundComplete) {
     document.getElementById('done-btn').style.display = 'none';
   }
 
@@ -36,6 +37,7 @@ document.getElementById('done-btn').addEventListener('click', () => {
   });
 
   doneClicked = true;
+  ballInRound = isRoundComplete ? 1 : 2;
 });
 
 document.getElementById('reset-btn').addEventListener('click', () => {
@@ -43,7 +45,7 @@ document.getElementById('reset-btn').addEventListener('click', () => {
     p.classList.remove('knocked', 'gone');
   });
   doneClicked = false;
-  doneCount = 0;
+  ballInRound = 1;
   document.getElementById('done-btn').style.display = '';
   document.getElementById('score-area').textContent = 'Click pins to knock them down';
 });
