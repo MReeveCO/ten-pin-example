@@ -3,105 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Ten Pin Scorer</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      margin: 0;
-      background: #1a1a2e;
-      color: #eee;
-    }
-
-    h1 {
-      margin-bottom: 2rem;
-      font-size: 1.5rem;
-      letter-spacing: 0.1em;
-    }
-
-    #lane {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1.2rem;
-      margin-bottom: 2rem;
-    }
-
-    .row {
-      display: flex;
-      gap: 1.2rem;
-    }
-
-    .pin {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      background: #f0e6d3;
-      border: 3px solid #c8a87a;
-      cursor: pointer;
-      transition: background 0.15s, border-color 0.15s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.75rem;
-      color: #888;
-      user-select: none;
-    }
-
-    .pin:hover {
-      border-color: #e8c87a;
-    }
-
-    .pin.knocked {
-      background: #3a3a3a;
-      border-color: #555;
-    }
-
-    #score-area {
-      font-size: 1.2rem;
-      margin-bottom: 1.5rem;
-      min-height: 1.5em;
-    }
-
-    #done-btn {
-      padding: 0.7rem 2.5rem;
-      font-size: 1.1rem;
-      font-weight: bold;
-      letter-spacing: 0.15em;
-      background: #e8c87a;
-      color: #1a1a2e;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background 0.15s;
-    }
-
-    #done-btn:hover {
-      background: #f0d890;
-    }
-
-    #reset-btn {
-      margin-top: 1rem;
-      padding: 0.4rem 1.5rem;
-      font-size: 0.9rem;
-      background: transparent;
-      color: #888;
-      border: 1px solid #555;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: color 0.15s, border-color 0.15s;
-    }
-
-    #reset-btn:hover {
-      color: #ccc;
-      border-color: #888;
-    }
-  </style>
+  <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
+  <script src="scripts/main.js"></script>
   <h1>TEN PIN SCORER</h1>
 
   <div id="lane">
@@ -130,31 +35,5 @@
 
   <button id="done-btn">DONE</button>
   <button id="reset-btn">Reset</button>
-
-  <script>
-    let knocked = 0;
-
-    document.querySelectorAll('.pin').forEach(pin => {
-      pin.addEventListener('click', () => {
-        pin.classList.toggle('knocked');
-        knocked = document.querySelectorAll('.pin.knocked').length;
-        document.getElementById('score-area').textContent = `Click pins to knock them down`;
-      });
-    });
-
-    document.getElementById('done-btn').addEventListener('click', () => {
-      knocked = document.querySelectorAll('.pin.knocked').length;
-      document.getElementById('score-area').textContent =
-        knocked === 0 ? 'No pins knocked down.'
-        : knocked === 10 ? 'STRIKE! All 10 pins knocked down!'
-        : `${knocked} pin${knocked === 1 ? '' : 's'} knocked down.`;
-    });
-
-    document.getElementById('reset-btn').addEventListener('click', () => {
-      document.querySelectorAll('.pin').forEach(p => p.classList.remove('knocked'));
-      knocked = 0;
-      document.getElementById('score-area').textContent = 'Click pins to knock them down';
-    });
-  </script>
 </body>
 </html>
