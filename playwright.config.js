@@ -8,6 +8,6 @@ export default defineConfig({
   testDir: './tests',
   use: {
     baseURL: `file://${__dirname}/index.html`,
-    headless: false,
+    headless: !!process.env.CI,
   },
 });
